@@ -1,0 +1,31 @@
+{
+  "name": "ai-skillkit",
+  "version": "1.0.0",
+  "description": "Reusable SKILL.md files for AI agents, plus a zero-dependency Node.js API and CLI.",
+  "main": "lib/index.js",
+  "bin": {
+    "ai-skillkit": "bin/cli.js"
+  },
+  "files": [
+    "bin",
+    "lib",
+    "skills",
+    "README.md"
+  ],
+  "scripts": {
+    "test": "node test/index.test.js"
+  },
+  "keywords": [
+    "ai",
+    "llm",
+    "claude",
+    "skill",
+    "agent",
+    "prompt",
+    "skillkit"
+  ],
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "license": "MIT"
+}
