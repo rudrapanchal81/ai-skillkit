@@ -20,6 +20,16 @@ This package ships skills for document generation, presentation building, spread
 npm install ai-skillkit
 ```
 
+Use CommonJS or ESM depending on your app setup.
+
+```js
+const skillkit = require('ai-skillkit');
+```
+
+```js
+import skillkit, { compose, recommend } from 'ai-skillkit';
+```
+
 ## Use in `app.ts`
 
 If you want an AI app to follow the bundled baseline skills for vibe coding, install the package and compose the relevant skills into the system prompt you send to the model.
@@ -46,6 +56,13 @@ console.log(baseSkillsPrompt.length > 0);
 
 Use `compose()` with no argument to include all bundled skills, or pass one skill name or an array of skill names to create a focused prompt for the current task.
 
+## Why other teams use it
+
+- Consistent AI behavior across apps, scripts, and internal coding agents
+- Reusable prompt building blocks instead of rewriting long system prompts from scratch
+- Stronger guardrails through triggers, anti-triggers, critical rules, and common mistakes
+- Easy adoption in both code and CLI workflows, with support for bundled and local skills
+
 ## Bundled skills
 
 | Skill | Description |
@@ -66,7 +83,12 @@ console.log(skillkit.list());
 console.log(skillkit.get('docx'));
 console.log(skillkit.parse('pdf'));
 console.log(skillkit.search('spreadsheet'));
-console.log(skillkit.compose(['frontend', 'file-reading']));
+console.log(skillkit.recommend('Build a React CSV upload flow'));
+console.log(skillkit.compose({
+  skills: ['frontend', 'file-reading'],
+  includeMetadata: true,
+  format: 'markdown'
+}));
 ```
 
 ### `list()`
@@ -78,48 +100,6 @@ const skillkit = require('ai-skillkit');
 const names = skillkit.list();
 ```
 
-### `get(name)`
-
-Returns the raw `SKILL.md` content as a string.
-
-```js
-const skillkit = require('ai-skillkit');
-const markdown = skillkit.get('frontend');
-```
-
-### `parse(name)`
-
-Returns a normalized metadata object.
-
-```js
-const skillkit = require('ai-skillkit');
-const skill = skillkit.parse('xlsx');
-
-console.log(skill.name);
-console.log(skill.title);
-console.log(skill.description);
-console.log(skill.lines);
-console.log(skill.size);
-```
-
-### `all()`
-
-Returns parsed metadata for every bundled skill.
-
-```js
-const skillkit = require('ai-skillkit');
-const allSkills = skillkit.all();
-```
-
-### `search(query)`
-
-Performs a case-insensitive search across skill content and returns matching parsed skill objects.
-
-```js
-const skillkit = require('ai-skillkit');
-const matches = skillkit.search('react component');
-```
-
 ### `compose(input?)`
 
 Returns one prompt-ready string containing all bundled skills or a selected subset.
@@ -128,6 +108,51 @@ Returns one prompt-ready string containing all bundled skills or a selected subs
 const skillkit = require('ai-skillkit');
 const allSkillsPrompt = skillkit.compose();
 const focusedPrompt = skillkit.compose(['frontend', 'file-reading']);
+const markdownPrompt = skillkit.compose({
+  skills: ['frontend', 'file-reading'],
+  includeMetadata: true,
+  format: 'markdown',
+  maxLength: 12000
+});
+```
+
+`compose()` accepts:
+
+- `skills`: a string or array of skill names
+- `includeIntro`: include or skip the top-level prompt preface
+- `includeMetadata`: include title, description, triggers, and anti-triggers for each skill
+- `format`: `plain` or `markdown`
+- `maxLength`: fail fast if the composed prompt exceeds a character budget
+
+### `recommend(query, options?)`
+
+Returns the most relevant skills for a natural-language task description.
+
+```js
+const skillkit = require('ai-skillkit');
+const suggestions = skillkit.recommend('Create a spreadsheet import form with accessible validation', {
+  limit: 2
+});
+```
+
+### `validate(name)`
+
+Checks whether a bundled skill has the expected frontmatter and required sections.
+
+```js
+const skillkit = require('ai-skillkit');
+const result = skillkit.validate('frontend');
+console.log(result.valid);
+```
+
+### `createCollection(dir)`
+
+Loads a custom `skills/` directory and returns the same API surface for local or team-specific skills.
+
+```js
+const skillkit = require('ai-skillkit');
+const projectSkills = skillkit.createCollection('./skills');
+const prompt = projectSkills.compose({ includeMetadata: true });
 ```
 
 ## CLI usage
@@ -158,24 +183,23 @@ This writes `./skills/pdf.md` in your current working directory.
 npx ai-skillkit add --all
 ```
 
-### Show metadata for a skill
+### Compose a prompt bundle from the CLI
 
 ```bash
-npx ai-skillkit info frontend
+npx ai-skillkit compose frontend file-reading --metadata --format markdown
 ```
 
-### Scaffold a new local skill template
+### Recommend skills for a task
 
 ```bash
-npx ai-skillkit init api-design
+npx ai-skillkit recommend "build a React upload form with validation"
 ```
 
-This creates `./skills/api-design.md` in your current working directory.
-
-### Search across all skills
+### Validate a bundled or local skill
 
 ```bash
-npx ai-skillkit search spreadsheet
+npx ai-skillkit validate frontend
+npx ai-skillkit validate --file ./skills/custom-agent-workflow.md
 ```
 
 ## How to add your own custom skills
@@ -187,14 +211,7 @@ You can keep bundled skills and project-specific skills side by side.
 3. Fill in the frontmatter, quick reference table, implementation steps, critical rules, and dependencies.
 4. Keep one skill focused on one category of work so an agent can select it confidently.
 5. Store the file in version control so your team and agents share the same operating manual.
-
-A good custom skill should answer these questions immediately:
-
-- When should the agent load this skill?
-- What should the agent avoid doing?
-- What concrete sequence produces the desired artifact?
-- What dependencies are required?
-- What failure modes must be checked before handoff?
+6. Load the directory in code with `skillkit.createCollection('./skills')` when you want project-local composition, validation, and recommendation.
 
 ## Contributing guide
 

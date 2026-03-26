@@ -1,15 +1,23 @@
 {
   "name": "ai-skillkit",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Reusable SKILL.md files for AI agents, plus a zero-dependency Node.js API and CLI.",
   "main": "lib/index.js",
   "types": "index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./index.d.ts",
+      "require": "./lib/index.js",
+      "import": "./index.mjs"
+    }
+  },
   "bin": {
     "ai-skillkit": "bin/cli.js"
   },
   "files": [
     "bin",
     "index.d.ts",
+    "index.mjs",
     "lib",
     "skills",
     "README.md"
@@ -26,6 +34,15 @@
     "prompt",
     "skillkit"
   ],
+  "author": "Rudra Panchal",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rudrapanchal81/ai-skillkit.git"
+  },
+  "homepage": "https://github.com/rudrapanchal81/ai-skillkit#readme",
+  "bugs": {
+    "url": "https://github.com/rudrapanchal81/ai-skillkit/issues"
+  },
   "engines": {
     "node": ">=14.0.0"
   },
