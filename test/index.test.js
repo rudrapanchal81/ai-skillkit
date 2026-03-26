@@ -35,6 +35,16 @@ assert.ok(all.every(function (item) {
   return item.name && item.title;
 }));
 
+const composedAll = skillkit.compose();
+assert.ok(composedAll.indexOf('You are using ai-skillkit bundled SKILL.md guidance.') !== -1);
+assert.ok(composedAll.indexOf('=== SKILL: docx ===') !== -1);
+assert.ok(composedAll.indexOf('=== SKILL: xlsx ===') !== -1);
+
+const composedFocused = skillkit.compose(['frontend', 'file-reading']);
+assert.ok(composedFocused.indexOf('=== SKILL: frontend ===') !== -1);
+assert.ok(composedFocused.indexOf('=== SKILL: file-reading ===') !== -1);
+assert.ok(composedFocused.indexOf('=== SKILL: pdf ===') === -1);
+
 const searchResults = skillkit.search('react component');
 assert.ok(searchResults.some(function (item) {
   return item.name === 'frontend';

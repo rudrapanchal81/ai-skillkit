@@ -20,6 +20,32 @@ This package ships skills for document generation, presentation building, spread
 npm install ai-skillkit
 ```
 
+## Use in `app.ts`
+
+If you want an AI app to follow the bundled baseline skills for vibe coding, install the package and compose the relevant skills into the system prompt you send to the model.
+
+```ts
+import skillkit = require('ai-skillkit');
+
+const baseSkillsPrompt = skillkit.compose();
+const uiUploadPrompt = skillkit.compose(['frontend', 'file-reading']);
+
+function buildAgentPrompt(task: string) {
+  return [
+    'You are an AI coding agent working inside a product codebase.',
+    'Use the bundled skills when the request matches their triggers.',
+    uiUploadPrompt,
+    'Current task: ' + task
+  ].join('\n\n');
+}
+
+const prompt = buildAgentPrompt('Build a React CSV upload flow with validation and accessible states.');
+console.log(prompt);
+console.log(baseSkillsPrompt.length > 0);
+```
+
+Use `compose()` with no argument to include all bundled skills, or pass one skill name or an array of skill names to create a focused prompt for the current task.
+
 ## Bundled skills
 
 | Skill | Description |
@@ -40,6 +66,7 @@ console.log(skillkit.list());
 console.log(skillkit.get('docx'));
 console.log(skillkit.parse('pdf'));
 console.log(skillkit.search('spreadsheet'));
+console.log(skillkit.compose(['frontend', 'file-reading']));
 ```
 
 ### `list()`
@@ -91,6 +118,16 @@ Performs a case-insensitive search across skill content and returns matching par
 ```js
 const skillkit = require('ai-skillkit');
 const matches = skillkit.search('react component');
+```
+
+### `compose(input?)`
+
+Returns one prompt-ready string containing all bundled skills or a selected subset.
+
+```js
+const skillkit = require('ai-skillkit');
+const allSkillsPrompt = skillkit.compose();
+const focusedPrompt = skillkit.compose(['frontend', 'file-reading']);
 ```
 
 ## CLI usage

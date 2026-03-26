@@ -3,11 +3,13 @@
   "version": "1.0.0",
   "description": "Reusable SKILL.md files for AI agents, plus a zero-dependency Node.js API and CLI.",
   "main": "lib/index.js",
+  "types": "index.d.ts",
   "bin": {
     "ai-skillkit": "bin/cli.js"
   },
   "files": [
     "bin",
+    "index.d.ts",
     "lib",
     "skills",
     "README.md"
