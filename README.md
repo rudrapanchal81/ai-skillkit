@@ -1,69 +1,105 @@
 # ai-skillkit
-
-`ai-skillkit` is a publish-ready npm package that bundles reusable `SKILL.md` files for AI agents. Each skill is a self-contained operating manual: when to use it, when not to use it, what dependencies matter, the fastest safe path to execution, and concrete code examples that work in real-world projects.
-
-## What `SKILL.md` files are and why they matter
-
-A strong `SKILL.md` file gives an AI agent durable, opinionated guidance for a repeatable class of tasks. Instead of rediscovering patterns from scratch, the agent can load a skill and immediately inherit:
-
-- Clear triggers and anti-triggers
-- A quick decision table for common requests
-- Working implementation patterns with code
-- Critical rules that prevent common failures
-- A dependencies checklist for the target stack
-
-This package ships skills for document generation, presentation building, spreadsheet automation, frontend UI work, and uploaded-file parsing.
-
-## Installation
-
-```bash
-npm install ai-skillkit
-```
-
-Use CommonJS or ESM depending on your app setup.
-
-```js
-const skillkit = require('ai-skillkit');
-```
-
-```js
-import skillkit, { compose, recommend } from 'ai-skillkit';
-```
-
-## Use in `app.ts`
-
-If you want an AI app to follow the bundled baseline skills for vibe coding, install the package and compose the relevant skills into the system prompt you send to the model.
-
-```ts
-import skillkit = require('ai-skillkit');
-
-const baseSkillsPrompt = skillkit.compose();
-const uiUploadPrompt = skillkit.compose(['frontend', 'file-reading']);
-
-function buildAgentPrompt(task: string) {
-  return [
-    'You are an AI coding agent working inside a product codebase.',
-    'Use the bundled skills when the request matches their triggers.',
-    uiUploadPrompt,
-    'Current task: ' + task
-  ].join('\n\n');
-}
-
-const prompt = buildAgentPrompt('Build a React CSV upload flow with validation and accessible states.');
-console.log(prompt);
-console.log(baseSkillsPrompt.length > 0);
-```
-
-Use `compose()` with no argument to include all bundled skills, or pass one skill name or an array of skill names to create a focused prompt for the current task.
-
-## Why other teams use it
-
-- Consistent AI behavior across apps, scripts, and internal coding agents
-- Reusable prompt building blocks instead of rewriting long system prompts from scratch
-- Stronger guardrails through triggers, anti-triggers, critical rules, and common mistakes
-- Easy adoption in both code and CLI workflows, with support for bundled and local skills
-
-## Bundled skills
+ 
+ [![npm version](https://img.shields.io/npm/v/ai-skillkit.svg)](https://www.npmjs.com/package/ai-skillkit)
+ [![npm downloads](https://img.shields.io/npm/dm/ai-skillkit.svg)](https://www.npmjs.com/package/ai-skillkit)
+ [![license](https://img.shields.io/npm/l/ai-skillkit.svg)](https://github.com/rudrapanchal81/ai-skillkit/blob/main/LICENSE)
+ 
+ Reusable prompt skills for AI coding agents, with a zero-dependency JavaScript API and CLI.
+ 
+ `ai-skillkit` helps you make AI agents more reliable by packaging reusable `SKILL.md` files into prompt-ready guidance. Each skill defines when to use it, when not to use it, what workflow to follow, and what mistakes to avoid.
+ 
+ ## Who it is for
+ 
+ - AI app builders who need better system prompts for coding agents
+ - Teams standardizing how Claude, OpenAI, Cursor, or Windsurf should behave
+ - Developers who want reusable prompt building blocks instead of rewriting long instructions from scratch
+ 
+ ## Why it is useful
+ 
+ - Consistent AI behavior across apps, scripts, and internal agents
+ - Reusable prompt composition with bundled or local skills
+ - Stronger guardrails through triggers, anti-triggers, critical rules, and common mistakes
+ - Fast adoption through both code and CLI workflows
+ 
+ ## Common use cases
+ 
+ - Build a focused system prompt for a coding agent
+ - Recommend the best skills for a natural-language task
+ - Validate project-local skill files before your team uses them
+ - Bundle frontend, file parsing, or document-generation guidance into one AI-ready prompt
+ 
+ ## Installation
+ 
+ ```bash
+ npm install ai-skillkit
+ ```
+ 
+ Use CommonJS or ESM depending on your app setup.
+ 
+ ```js
+ const skillkit = require('ai-skillkit');
+ ```
+ 
+ ```js
+ import skillkit, { compose, recommend } from 'ai-skillkit';
+ ```
+ 
+ ## Quickstart
+ 
+ ```js
+ const skillkit = require('ai-skillkit');
+ 
+ const suggestedSkills = skillkit.recommend('Build a React CSV upload flow with validation');
+ const prompt = skillkit.compose({
+   skills: suggestedSkills.map(function (skill) {
+     return skill.name;
+   }),
+   includeMetadata: true,
+   format: 'markdown'
+ });
+ 
+ console.log(prompt);
+ ```
+ 
+ ## Use in `app.ts`
+ 
+ If you want an AI app to follow bundled baseline skills for vibe coding, compose the relevant skills into the system prompt you send to the model.
+ 
+ ```ts
+ import skillkit = require('ai-skillkit');
+ 
+ const baseSkillsPrompt = skillkit.compose();
+ const uiUploadPrompt = skillkit.compose(['frontend', 'file-reading']);
+ 
+ function buildAgentPrompt(task: string) {
+   return [
+     'You are an AI coding agent working inside a product codebase.',
+     'Use the bundled skills when the request matches their triggers.',
+     uiUploadPrompt,
+     'Current task: ' + task
+   ].join('\n\n');
+ }
+ 
+ const prompt = buildAgentPrompt('Build a React CSV upload flow with validation and accessible states.');
+ console.log(prompt);
+ console.log(baseSkillsPrompt.length > 0);
+ ```
+ 
+ Use `compose()` with no argument to include all bundled skills, or pass one skill name or an array of skill names to create a focused prompt for the current task.
+ 
+ ## What `SKILL.md` files are and why they matter
+ 
+ A strong `SKILL.md` file gives an AI agent durable, opinionated guidance for a repeatable class of tasks. Instead of rediscovering patterns from scratch, the agent can load a skill and immediately inherit:
+ 
+ - Clear triggers and anti-triggers
+ - A quick decision table for common requests
+ - Working implementation patterns with code
+ - Critical rules that prevent common failures
+ - A dependencies checklist for the target stack
+ 
+ This package ships skills for document generation, presentation building, spreadsheet automation, frontend UI work, and uploaded-file parsing.
+ 
+ ## Bundled skills
 
 | Skill | Description |
 | --- | --- |
