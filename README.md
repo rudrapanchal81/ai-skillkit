@@ -1,7 +1,8 @@
 # ai-skillkit
- 
+  
  [![npm version](https://img.shields.io/npm/v/ai-skillkit.svg)](https://www.npmjs.com/package/ai-skillkit)
  [![npm downloads](https://img.shields.io/npm/dm/ai-skillkit.svg)](https://www.npmjs.com/package/ai-skillkit)
+ [![test](https://github.com/rudrapanchal81/ai-skillkit/actions/workflows/test.yml/badge.svg)](https://github.com/rudrapanchal81/ai-skillkit/actions/workflows/test.yml)
  [![license](https://img.shields.io/npm/l/ai-skillkit.svg)](https://github.com/rudrapanchal81/ai-skillkit/blob/main/LICENSE)
  
  Reusable prompt skills for AI coding agents, with a zero-dependency JavaScript API and CLI.
