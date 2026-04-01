@@ -12,4 +12,5 @@ export const validateContent = skillkit.validateContent;
 export const validateFile = skillkit.validateFile;
 export const createCollection = skillkit.createCollection;
 export const loadSkills = skillkit.loadSkills;
+export const getVibePrompt = skillkit.getVibePrompt;
 export default skillkit;

@@ -66,6 +66,7 @@ declare namespace skillkit {
   function validateFile(filePath: string): ValidationResult;
   function createCollection(dir: string): SkillCollection;
   function loadSkills(dir: string): SkillCollection;
+  function getVibePrompt(): string;
 }
 
 export = skillkit;

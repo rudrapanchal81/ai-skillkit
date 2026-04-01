@@ -1,0 +1,75 @@
+name: Version Check
+
+on:
+  pull_request:
+    branches:
+      - main
+      - master
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  check-version:
+    name: Verify version bump
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Get base version
+        id: base-version
+        run: |
+          git checkout ${{ github.base_ref }}
+          BASE_VERSION=$(node -p "require('./package.json').version")
+          echo "version=$BASE_VERSION" >> $GITHUB_OUTPUT
+          echo "Base version: $BASE_VERSION"
+
+      - name: Get PR version
+        id: pr-version
+        run: |
+          git checkout ${{ github.head_ref }}
+          PR_VERSION=$(node -p "require('./package.json').version")
+          echo "version=$PR_VERSION" >> $GITHUB_OUTPUT
+          echo "PR version: $PR_VERSION"
+
+      - name: Compare versions
+        id: compare
+        run: |
+          BASE="${{ steps.base-version.outputs.version }}"
+          PR="${{ steps.pr-version.outputs.version }}"
+          
+          if [ "$BASE" = "$PR" ]; then
+            echo "changed=false" >> $GITHUB_OUTPUT
+            echo "❌ Version not changed: $BASE → $PR"
+            exit 1
+          else
+            echo "changed=true" >> $GITHUB_OUTPUT
+            echo "✅ Version bumped: $BASE → $PR"
+          fi
+
+      - name: Comment on PR
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '❌ **Version check failed**\n\nYou must bump the version in `package.json` before merging.\n\nRun one of:\n```bash\nnpm version patch  # 1.2.0 → 1.2.1\nnpm version minor  # 1.2.0 → 1.3.0\nnpm version major  # 1.2.0 → 2.0.0\n```'
+            })
+
+      - name: Comment success
+        if: success()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '✅ **Version check passed**\n\nVersion bumped: `${{ steps.base-version.outputs.version }}` → `${{ steps.pr-version.outputs.version }}`'
+            })
