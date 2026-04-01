@@ -30,22 +30,25 @@
  - Bundle frontend, file parsing, or document-generation guidance into one AI-ready prompt
  
  ## Installation
- 
- ```bash
- npm install ai-skillkit
- ```
- 
- Use CommonJS or ESM depending on your app setup.
- 
- ```js
- const skillkit = require('ai-skillkit');
- ```
- 
- ```js
- import skillkit, { compose, recommend } from 'ai-skillkit';
- ```
- 
- ## Quickstart
+
+```bash
+npm install ai-skillkit
+```
+
+**New to ai-skillkit?** → [Getting Started Guide](./GETTING_STARTED.md)  
+**Want integration examples?** → [Examples Directory](./examples/)
+
+Use CommonJS or ESM depending on your app setup.
+
+```js
+const skillkit = require('ai-skillkit');
+```
+
+```js
+import skillkit, { compose, recommend } from 'ai-skillkit';
+```
+
+## Quickstart
  
  ```js
  const skillkit = require('ai-skillkit');
@@ -238,6 +241,17 @@ npx ai-skillkit recommend "build a React upload form with validation"
 npx ai-skillkit validate frontend
 npx ai-skillkit validate --file ./skills/custom-agent-workflow.md
 ```
+
+## Integration examples
+
+See the [`examples/`](./examples/) directory for complete integration guides:
+
+- **[OpenAI](./examples/openai.js)** - Using ai-skillkit with GPT models
+- **[Claude](./examples/claude.js)** - Using ai-skillkit with Anthropic Claude
+- **[Cursor/Windsurf](./examples/cursor-windsurf.md)** - Setup guide for AI IDEs
+- **[Custom Agent](./examples/custom-agent.js)** - Building your own coding agent
+
+Each example shows how to make AI coding more reliable by loading relevant skills into the system prompt.
 
 ## How to add your own custom skills
 
