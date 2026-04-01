@@ -38,6 +38,17 @@ npm install ai-skillkit
 **New to ai-skillkit?** → [Getting Started Guide](./GETTING_STARTED.md)  
 **Want integration examples?** → [Examples Directory](./examples/)
 
+### One-line vibe coding setup
+
+```ts
+import { getVibePrompt } from 'ai-skillkit';
+
+const systemPrompt = getVibePrompt();
+// All basic skills applied, ready to use with any AI model
+```
+
+### Full API usage
+
 Use CommonJS or ESM depending on your app setup.
 
 ```js

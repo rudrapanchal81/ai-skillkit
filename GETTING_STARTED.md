@@ -24,7 +24,18 @@ When you build with AI coding assistants (OpenAI, Claude, Cursor, Windsurf), you
 npm install ai-skillkit
 ```
 
-## 30-Second Quickstart
+## 10-Second Quickstart (One-Line Vibe Coding)
+
+```ts
+import { getVibePrompt } from 'ai-skillkit';
+
+const systemPrompt = getVibePrompt();
+// All basic skills applied automatically - use with OpenAI, Claude, Cursor, etc.
+```
+
+That's it! All basic skills are now loaded and ready for your AI model.
+
+## 30-Second Quickstart (Custom Skills)
 
 ```js
 const skillkit = require('ai-skillkit');
@@ -34,11 +45,20 @@ const skills = skillkit.recommend('Build a React CSV upload form with validation
 
 // Compose into AI-ready prompt
 const prompt = skillkit.compose({
-  skills: skills.map(s => s.name),
+  skillOne-line vibe coding (simplest)
+
+```ts
+import { getVibePrompt } from 'ai-skillkit';
+
+const systemPrompt = getVibePrompt();
+// Use with any AI model - OpenAI, Claude, Cursor, Windsurf, etc.
+```
+
+### 2. s: skills.map(s => s.name),
   includeMetadata: true,
   format: 'markdown'
 });
-
+3
 // Use in your AI system prompt
 console.log(prompt);
 ```
@@ -53,7 +73,7 @@ const skillkit = require('ai-skillkit');
 const systemPrompt = [
   'You are an expert coding assistant.',
   skillkit.compose({ includeMetadata: true, format: 'markdown' })
-].join('\n\n');
+].jo4n('\n\n');
 
 // Use systemPrompt in your OpenAI call
 ```
@@ -63,7 +83,7 @@ const systemPrompt = [
 ```js
 const skillkit = require('ai-skillkit');
 
-const relevantSkills = skillkit.recommend(userTask);
+cons5 relevantSkills = skillkit.recommend(userTask);
 const systemPrompt = skillkit.compose({
   skills: relevantSkills.map(s => s.name),
   includeMetadata: true,
