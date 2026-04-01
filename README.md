@@ -284,7 +284,10 @@ Contributions are welcome if they make the skills more practical, more reliable,
 3. Keep examples executable and avoid filler text.
 4. Preserve zero runtime dependencies for the published package itself.
 5. Run `npm test` before opening a pull request.
-6. Update the README skills registry if you add a new bundled skill.
+6. **Bump the version** before merging: `npm version patch|minor|major`
+7. Update the README skills registry if you add a new bundled skill.
+
+**Note:** This repository auto-publishes to npm when PRs are merged to `main`. See [Autopublish Setup](./.github/AUTOPUBLISH.md) for details.
 
 ## Development
 
