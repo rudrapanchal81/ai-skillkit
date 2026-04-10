@@ -5,19 +5,30 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.3.2] - 2026-04-04
+## [1.3.3] - 2026-04-08
 
 ### Added
+- **New bundled skills:**
+  - `testing` - Jest, Vitest, Playwright test patterns with mocking and fixtures
+  - `api-design` - REST API, GraphQL, and OpenAPI design patterns
+  - `backend` - Node.js/Express patterns with middleware, auth, and error handling
 - CHANGELOG.md to track version history
-- GitHub issue and PR templates
-- SECURITY.md and CODE_OF_CONDUCT.md
-- New bundled skills: testing, api-design, backend
-- Improved test coverage
-- Better error messages with suggestions
+- GitHub issue templates (bug report, feature request)
+- GitHub pull request template
+- SECURITY.md with vulnerability reporting guidelines
 
 ### Changed
-- Enhanced error handling with more descriptive messages
-- Improved README with more badges
+- **Improved error messages** with actionable suggestions:
+  - Show available skills when skill not found
+  - Include example usage in validation errors
+  - Suggest fixes for common mistakes
+  - Add helpful hints for maxLength errors
+- Enhanced error handling throughout lib/index.js
+
+## [1.3.2] - 2026-04-04
+
+### Changed
+- Version bump for package improvements
 
 ## [1.3.1] - 2026-04-02
 
@@ -100,6 +111,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Basic test suite
 - README documentation
 
+[1.3.3]: https://github.com/rudrapanchal81/ai-skillkit/compare/v1.3.2...v1.3.3
 [1.3.2]: https://github.com/rudrapanchal81/ai-skillkit/compare/v1.3.1...v1.3.2
 [1.3.1]: https://github.com/rudrapanchal81/ai-skillkit/compare/v1.3.0...v1.3.1
 [1.3.0]: https://github.com/rudrapanchal81/ai-skillkit/compare/v1.2.0...v1.3.0
