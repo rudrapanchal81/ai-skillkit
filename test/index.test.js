@@ -18,7 +18,7 @@ function runCli(args, cwd) {
 async function main() {
   const names = skillkit.list();
 
-  assert.deepStrictEqual(names, ['api-design', 'backend', 'docx', 'file-reading', 'frontend', 'pdf', 'pptx', 'testing', 'xlsx']);
+  assert.deepStrictEqual(names, ['api-design', 'backend', 'database', 'deployment', 'docx', 'file-reading', 'frontend', 'pdf', 'pptx', 'security', 'testing', 'xlsx']);
   assert.ok(skillkit.get('docx').indexOf('name: docx') !== -1);
   assert.ok(skillkit.get('pdf').indexOf('# PDF Skill') !== -1);
 
@@ -34,7 +34,7 @@ async function main() {
   assert.ok(parsed.antiTriggers.length > 0);
 
   const all = skillkit.all();
-  assert.strictEqual(all.length, 9);
+  assert.strictEqual(all.length, 12);
   assert.ok(all.every(function (item) {
     return item.name && item.title;
   }));
