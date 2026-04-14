@@ -5,6 +5,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.3.5] - 2026-04-14
+
+### Added
+- **New bundled skills (12 total now):**
+  - `database` - SQL, Prisma, TypeORM, MongoDB, migrations, and data modeling patterns
+  - `deployment` - Docker, CI/CD, Vercel, AWS, Railway, Kubernetes deployment patterns
+  - `security` - Authentication, authorization, encryption, input validation, and security best practices
+
+### Changed
+- Expanded skill coverage to include full-stack development workflow
+- Updated tests to reflect 12 total bundled skills
+
+## [1.3.4] - 2026-04-10
+
+### Fixed
+- Updated test expectations to include api-design, backend, and testing skills
+
 ## [1.3.3] - 2026-04-08
 
 ### Added
@@ -94,7 +111,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Enhanced package.json with better description, keywords, and metadata
 - Fixed CLI positional arguments for `add` and `init` commands
 - Fixed compose `maxLength` default handling
-
+5]: https://github.com/rudrapanchal81/ai-skillkit/compare/v1.3.4...v1.3.5
+[1.3.4]: https://github.com/rudrapanchal81/ai-skillkit/compare/v1.3.3...v1.3.4
+[1.3.
 ### Fixed
 - CLI argument parsing bugs
 - Compose maxLength enforcement logic
