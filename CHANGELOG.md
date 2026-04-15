@@ -111,9 +111,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Enhanced package.json with better description, keywords, and metadata
 - Fixed CLI positional arguments for `add` and `init` commands
 - Fixed compose `maxLength` default handling
-5]: https://github.com/rudrapanchal81/ai-skillkit/compare/v1.3.4...v1.3.5
+[1.3.6]: https://github.com/rudrapanchal81/ai-skillkit/compare/v1.3.5...v1.3.6
+[1.3.5]: https://github.com/rudrapanchal81/ai-skillkit/compare/v1.3.4...v1.3.5
 [1.3.4]: https://github.com/rudrapanchal81/ai-skillkit/compare/v1.3.3...v1.3.4
-[1.3.
+[1.3.3]: https://github.com/rudrapanchal81/ai-skillkit/compare/v1.3.2...v1.3.3
+[1.3.2]: https://github.com/rudrapanchal81/ai-skillkit/compare/v1.3.1...v1.3.2
+[1.3.1]: https://github.com/rudrapanchal81/ai-skillkit/compare/v1.3.0...v1.3.1
+[1.3.0]: https://github.com/rudrapanchal81/ai-skillkit/compare/v1.2.0...v1.3.0
+[1.2.0]: https://github.com/rudrapanchal81/ai-skillkit/compare/v1.1.1...v1.2.0
+[1.1.1]: https://github.com/rudrapanchal81/ai-skillkit/compare/v1.1.0...v1.1.1
+[1.1.0]: https://github.com/rudrapanchal81/ai-skillkit/compare/v1.0.0...v1.1.0
+[1.0.0]: https://github.com/rudrapanchal81/ai-skillkit/releases/tag/v1.0.0
+
 ### Fixed
 - CLI argument parsing bugs
 - Compose maxLength enforcement logic
@@ -124,6 +133,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Initial release
 - Core API: `list()`, `get()`, `parse()`, `all()`, `search()`, `compose()`
 - CLI commands: list, get, add, info, init, search
+- 6 bundled skills: docx, pdf, pptx, xlsx, frontend, file-reading
+- Zero runtime dependencies
+- TypeScript declarations
+- Basic test suite
+- README documentation
+
+[1.3.3]: https://github.com/rudrapanchal81/ai-skillkit/compare/v1.3.2...v1.3.3
+[1.3.2]: https://github.com/rudrapanchal81/ai-skillkit/compare/v1.3.1...v1.3.2
+[1.3.1]: https://github.com/rudrapanchal81/ai-skillkit/compare/v1.3.0...v1.3.1
+[1.3.0]: https://github.com/rudrapanchal81/ai-skillkit/compare/v1.2.0...v1.3.0
+[1.2.0]: https://github.com/rudrapanchal81/ai-skillkit/compare/v1.1.1...v1.2.0
+[1.1.1]: https://github.com/rudrapanchal81/ai-skillkit/compare/v1.1.0...v1.1.1
+[1.1.0]: https://github.com/rudrapanchal81/ai-skillkit/compare/v1.0.0...v1.1.0
+[1.0.0]: https://github.com/rudrapanchal81/ai-skillkit/releases/tag/v1.0.0
 - 6 bundled skills: docx, pdf, pptx, xlsx, frontend, file-reading
 - Zero runtime dependencies
 - TypeScript declarations
